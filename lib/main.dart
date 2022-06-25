@@ -1,3 +1,4 @@
+
 import 'package:flutter/material.dart';
 ///teste 
 void main() {
@@ -10,6 +11,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false, // tirar a logo DEBUG do canto
       title: 'Flutter Demo',
       theme: ThemeData(
 
@@ -42,33 +44,44 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       appBar: AppBar(
 
-        title: Text(widget.title),
+      leading: //deixa o ícone na esquerda e só cabe 1
+          IconButton(
+            icon: Icon(
+              Icons.menu,
+              color: Colors.black,
+            ),
+            onPressed: () {
+            },
+          ),
+
+          title: Text(widget.title),
+
+        actions: [ //deixa o ícone na direita e cabem varios
+          IconButton(
+            icon: Icon(
+              Icons.shopping_cart_outlined ,
+              color: Colors.black,
+            ),
+            onPressed: () {
+            },
+          )
+        ],
+
+        
+        //backgroundColor: Colors.yellow, // mudar a cor da barra
+        backgroundColor: Color(0xffffd740),
       ),
       body: Center(
-
         child: Column(
-
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headline4,
-            ),
+
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ), 
     );
   }
 }
