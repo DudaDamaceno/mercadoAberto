@@ -12,7 +12,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false, // tirar a logo DEBUG do canto
-      title: 'Flutter Demo',
+      title: 'Mercado Aberto',
       theme: ThemeData(
 
         primarySwatch: Colors.blue,
@@ -33,35 +33,48 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-
-      _counter++;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: const Color(0xffffd740),
 
-      leading: //deixa o ícone na esquerda e só cabe 1
-          IconButton(
-            icon: Icon(
-              Icons.menu,
-              color: Colors.black,
+        elevation:0,
+
+        leading: //deixa o ícone na esquerda e só cabe 1
+            IconButton(
+              icon: const Icon(
+                Icons.menu,
+                color: Colors.black,
+              ),
+              onPressed: () {
+              },
             ),
-            onPressed: () {
-            },
+
+        actions: <Widget>[
+          Container(
+            width: MediaQuery.of(context).size.width - (2 * 32) - (8 * 5),
+            padding: const EdgeInsets.only(top: 3, bottom: 2),
+              child: TextField(
+                decoration: InputDecoration(
+                  isDense: true,
+                  prefixIcon: const Icon(Icons.search),
+                  contentPadding: EdgeInsets.symmetric(vertical:5.0),
+                  filled: true, //vai falar que a barra vai ter uma cor para preencher
+                  fillColor: Colors.white, //a cor 
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(50.0),
+                  ),
+                  hintText:
+                    'Buscar no Mercado Aberto'
+                
+                ),
+              )
           ),
-
-          title: Text(widget.title),
-
-        actions: [ //deixa o ícone na direita e cabem varios
+        
           IconButton(
-            icon: Icon(
+            icon: const Icon(
               Icons.shopping_cart_outlined ,
               color: Colors.black,
             ),
@@ -69,19 +82,30 @@ class _MyHomePageState extends State<MyHomePage> {
             },
           )
         ],
+   
 
-        
-        //backgroundColor: Colors.yellow, // mudar a cor da barra
-        backgroundColor: Color(0xffffd740),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-
-          ],
+        bottom: const PreferredSize(      
+          preferredSize:  Size.fromHeight(30.0),
+          child: ListTile( 
+            leading: Icon(Icons.pin_drop_outlined, color: Colors.black, size: 19.0,),    
+            title: Text("Enviar para Maria Eduarda - Rua Jardim California, 294",
+             style: TextStyle(fontSize: 11.5), textAlign: TextAlign.left)
+          ),
         ),
-      ),
+
+      
+
+      ),//AppBar 
+          body: Container(
+          decoration:BoxDecoration(gradient: LinearGradient (
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: [Color(0xffffd740), Color(0xfff5f5f5),]
+          ),
+        ),
+          ),
+      
+  
     );
   }
 }
